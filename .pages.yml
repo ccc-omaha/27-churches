@@ -70,7 +70,7 @@ content:
       - name: photo
         label: Card photo
         type: image
-        description: Shown on the card and in the story popup. Portrait photos work best.
+        description: "Portrait photos work best. Keep files under 2 MB (on Unsplash, download the Medium size) or the upload will fail with error 413. Larger photos are shrunk automatically after upload."
       - name: photoFocus
         label: Photo crop in the story popup
         type: select
