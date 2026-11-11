@@ -2,6 +2,10 @@
 # Staff edit content at https://app.pagescms.org. Saving commits to GitHub,
 # and Netlify republishes the site automatically.
 
+settings:
+  commit:
+    identity: user   # record the staff member's name on each saved change
+
 media:
   input: images
   output: /images
