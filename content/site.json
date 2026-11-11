@@ -119,6 +119,13 @@
       "photo": "/images/p14.jpg",
       "photoFocus": "50%",
       "story": "Bivocational pastor Francis Moseray has planted three churches in The Gambia. The newest one is in Serrekunda, a very urban area of the country. Currently, 85 members attend the church plant. With funds from CCC, they will be able to construct a block church building and train and equip believers to go out into areas with little access to the gospel."
+    },
+    {
+      "name": "Test Church",
+      "place": "Test Town",
+      "year": "2026",
+      "photoFocus": "50%",
+      "story": "lorem ipsum dolor sit amet consectetur adipiscing elit et in iusto duis do sunt maxime labore esse fugiat occaecat fugiat officia ut quo culpa qui voluptas deleniti est fuga ipsum minim consequatur nihil ad veniam duis et excepturi est aliquip dolor maxime culpa praesentium officia et eiusmod sunt irure sit"
     }
   ],
   "footerHeading": "Christ Community Church Omaha",
