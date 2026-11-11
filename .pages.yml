@@ -1,6 +1,6 @@
 # Pages CMS configuration for 27.cccomaha.org
-# Staff edit content at https://app.pagescms.org. Saving commits to GitHub,
-# and Netlify republishes the site automatically.
+# Staff edit at https://app.pagescms.org. Saving commits to GitHub,
+# and Netlify republishes the site in about a minute.
 
 settings:
   commit:
@@ -13,82 +13,97 @@ media:
   extensions: [jpg, jpeg, png, webp]
 
 content:
-  - name: site
-    label: 27 Churches page
+  # ---------------------------------------------------------------
+  - name: top
+    label: "1. Top of page"
     type: file
-    path: content/site.json
+    path: content/top.json
     format: json
     fields:
       - name: eyebrow
-        label: Small heading above the title
+        label: Small aqua label
         type: string
+        description: The small all-caps line at the very top, above the big title.
       - name: headline
-        label: Title
+        label: Big title
         type: string
-        description: The accent year below is added after this text in aqua.
+        description: The large white heading. The aqua year below is added to the end of it.
       - name: headlineAccent
-        label: Title accent (aqua)
+        label: Big title, aqua part
         type: string
+        description: The last word of the big title, shown in aqua.
       - name: intro
         label: Intro paragraphs
         type: text
         list: true
-        description: One paragraph per item. Wrap words in *asterisks* to italicize them.
+        description: The paragraphs to the right of the big title. One paragraph per item. Wrap words in *asterisks* to italicize them.
       - name: progressLabel
-        label: Label next to the count
+        label: Progress label
         type: string
-        description: The count itself updates automatically from the church list.
-      - name: churches
-        label: Church plants
-        description: In wall order. Add a church to fill the next open card (27 max). The count, progress bar and year filters update automatically.
-        type: object
-        list:
-          max: 27
-          collapsible:
-            collapsed: true
-            summary: "{index}. {name}, {place} ({year})"
-        fields:
-          - name: name
-            label: Church name
-            type: string
-            required: true
-          - name: place
-            label: Location
-            type: string
-            required: true
-            description: Use the security name where needed (for example, Green City).
-          - name: year
-            label: Year
-            type: select
-            required: true
-            options:
-              values: ["2024", "2025", "2026", "2027"]
-          - name: photo
-            label: Photo
-            type: image
-            description: Portrait photo, at least 900px tall.
-          - name: photoFocus
-            label: Photo focus in the story view
-            type: select
-            description: Which part of the photo stays visible when it's cropped.
-            options:
-              values:
-                - name: "20%"
-                  label: Top
-                - name: "32%"
-                  label: Upper third
-                - name: "50%"
-                  label: Center
-                - name: "60%"
-                  label: Just below center
-                - name: "75%"
-                  label: Lower third
-          - name: story
-            label: Story
-            type: text
-      - name: footerHeading
+        description: The small text after the "14 / 27" count. The count updates by itself from the Church plants list.
+
+  # ---------------------------------------------------------------
+  - name: churches
+    label: "2. Church plants (the wall)"
+    type: file
+    path: content/churches.json
+    format: json
+    list: true
+    fields:
+      - name: name
+        label: Church name
+        type: string
+        required: true
+        description: Shown on the card and as the title when someone opens the story.
+      - name: place
+        label: Location
+        type: string
+        required: true
+        description: Use the security name where needed (for example, Green City).
+      - name: year
+        label: Year
+        type: select
+        required: true
+        description: Sets the year on the card and which year filter it appears under.
+        options:
+          values: ["2024", "2025", "2026", "2027"]
+      - name: photo
+        label: Card photo
+        type: image
+        description: "Portrait photos work best. Keep files under 2 MB (on Unsplash, download the Medium size) or the upload will fail with error 413. Larger photos are shrunk automatically after upload."
+      - name: photoFocus
+        label: Photo crop in the story popup
+        type: select
+        description: Which part of the photo stays visible when the popup crops it.
+        options:
+          values:
+            - name: "20%"
+              label: Top
+            - name: "32%"
+              label: Upper third
+            - name: "50%"
+              label: Center
+            - name: "60%"
+              label: Just below center
+            - name: "75%"
+              label: Lower third
+      - name: story
+        label: Story
+        type: text
+        description: The paragraph people read when they open this church's card.
+
+  # ---------------------------------------------------------------
+  - name: bottom
+    label: "3. Bottom of page"
+    type: file
+    path: content/bottom.json
+    format: json
+    fields:
+      - name: heading
         label: Footer heading
         type: string
-      - name: footerText
+        description: The small all-caps heading at the bottom of the page.
+      - name: text
         label: Footer text
         type: text
+        description: The short paragraph under the footer heading.

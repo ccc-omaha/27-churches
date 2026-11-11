@@ -1,5 +1,5 @@
 /* 27 Churches by 2027
-   All editable content lives in /content/site.json (edited through Pages CMS).
+   All editable content lives in /content/*.json (edited through Pages CMS).
    This file only renders it. */
 (async function () {
   const GOAL = 27;
@@ -8,28 +8,28 @@
   const esc = t => String(t ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const italics = t => esc(t).replace(/\*(.+?)\*/g, "<em>$1</em>");
 
-  let data;
+  let top = {}, churches = [], bottom = {};
   try {
-    const r = await fetch("/content/site.json", { cache: "no-cache" });
-    data = await r.json();
+    const get = f => fetch(`/content/${f}`, { cache: "no-cache" }).then(r => r.json());
+    [top, churches, bottom] = await Promise.all([get("top.json"), get("churches.json"), get("bottom.json")]);
   } catch (e) {
-    console.error("Could not load content/site.json", e);
+    console.error("Could not load content files", e);
     return;
   }
 
   /* ---------- page text ---------- */
   const setText = (id, v) => { if (v) $(id).textContent = v; };
-  setText("#c-eyebrow", data.eyebrow);
-  setText("#c-headline", data.headline);
-  setText("#c-accent", data.headlineAccent);
-  setText("#c-progress", data.progressLabel);
-  setText("#c-foot-h", data.footerHeading);
-  setText("#c-foot-p", data.footerText);
-  if (Array.isArray(data.intro) && data.intro.length)
-    $("#c-intro").innerHTML = data.intro.filter(Boolean).map(p => `<p>${italics(p)}</p>`).join("");
+  setText("#c-eyebrow", top.eyebrow);
+  setText("#c-headline", top.headline);
+  setText("#c-accent", top.headlineAccent);
+  setText("#c-progress", top.progressLabel);
+  setText("#c-foot-h", bottom.heading);
+  setText("#c-foot-p", bottom.text);
+  if (Array.isArray(top.intro) && top.intro.length)
+    $("#c-intro").innerHTML = top.intro.filter(Boolean).map(p => `<p>${italics(p)}</p>`).join("");
 
   /* ---------- churches ---------- */
-  const listed = (data.churches || []).filter(c => c && c.name).slice(0, GOAL);
+  const listed = (Array.isArray(churches) ? churches : []).filter(c => c && c.name).slice(0, GOAL);
   const ALL = Array.from({ length: GOAL }, (_, i) => listed[i]
     ? { ...listed[i], n: i + 1, year: String(listed[i].year || "") }
     : { n: i + 1, open: true });
