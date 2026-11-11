@@ -1,0 +1,90 @@
+# Pages CMS configuration for 27.cccomaha.org
+# Staff edit content at https://app.pagescms.org. Saving commits to GitHub,
+# and Netlify republishes the site automatically.
+
+media:
+  input: images
+  output: /images
+  rename: safe
+  extensions: [jpg, jpeg, png, webp]
+
+content:
+  - name: site
+    label: 27 Churches page
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - name: eyebrow
+        label: Small heading above the title
+        type: string
+      - name: headline
+        label: Title
+        type: string
+        description: The accent year below is added after this text in aqua.
+      - name: headlineAccent
+        label: Title accent (aqua)
+        type: string
+      - name: intro
+        label: Intro paragraphs
+        type: text
+        list: true
+        description: One paragraph per item. Wrap words in *asterisks* to italicize them.
+      - name: progressLabel
+        label: Label next to the count
+        type: string
+        description: The count itself updates automatically from the church list.
+      - name: churches
+        label: Church plants
+        description: In wall order. Add a church to fill the next open card (27 max). The count, progress bar and year filters update automatically.
+        type: object
+        list:
+          max: 27
+          collapsible:
+            collapsed: true
+            summary: "{index}. {name}, {place} ({year})"
+        fields:
+          - name: name
+            label: Church name
+            type: string
+            required: true
+          - name: place
+            label: Location
+            type: string
+            required: true
+            description: Use the security name where needed (for example, Green City).
+          - name: year
+            label: Year
+            type: select
+            required: true
+            options:
+              values: ["2024", "2025", "2026", "2027"]
+          - name: photo
+            label: Photo
+            type: image
+            description: Portrait photo, at least 900px tall.
+          - name: photoFocus
+            label: Photo focus in the story view
+            type: select
+            description: Which part of the photo stays visible when it's cropped.
+            options:
+              values:
+                - name: "20%"
+                  label: Top
+                - name: "32%"
+                  label: Upper third
+                - name: "50%"
+                  label: Center
+                - name: "60%"
+                  label: Just below center
+                - name: "75%"
+                  label: Lower third
+          - name: story
+            label: Story
+            type: text
+      - name: footerHeading
+        label: Footer heading
+        type: string
+      - name: footerText
+        label: Footer text
+        type: text

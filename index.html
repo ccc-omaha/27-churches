@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>27 Churches by 2027</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="CCC's Reach One More goal: catalyze twenty-seven church plants in least-reached places around the world by 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Figtree:wght@400;500;600;700&display=swap">
+<meta property="og:title" content="27 Churches by 2027">
+<meta property="og:description" content="CCC's Reach One More goal: catalyze twenty-seven church plants in least-reached places around the world by 2027.">
+<meta property="og:image" content="https://27.cccomaha.org/og.jpg">
+<meta property="og:url" content="https://27.cccomaha.org/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+/* Layout: one wall of wooden ledges holding 27 print cards; tap a card to open its story. Deliberately single dark look, matching the printed wall. */
+:root{
+  --navy:#151a36;       /* page ground, from the printed story panels */
+  --navy-2:#1d2347;     /* raised surfaces */
+  --wall:#1b1c22;       /* the charcoal wall behind the ledges */
+  --paper:#fdfbf6;      /* card stock */
+  --ink:#151a36;        /* text on paper */
+  --text:#eef0f7;
+  --muted:#a9aecb;
+  --aqua:#8de2e0;       /* "Church Plant" accent */
+  --wood-1:#e9d6b6; --wood-2:#d4bb93; --wood-3:#b89c72;
+  --line:rgba(255,255,255,.12);
+  --f-display:"Montserrat","Helvetica Neue",Arial,sans-serif;
+  --f-serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --f-body:"Figtree","Helvetica Neue",Arial,sans-serif;
+  --cols:3; --gap:12px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--navy);color:var(--text);font:400 16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--navy)}
+.wrap{max-width:1320px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--aqua);outline-offset:3px}
+
+/* ---------- Header ---------- */
+header{padding-block:clamp(36px,7vw,80px) clamp(24px,4vw,44px)}
+.hero{display:grid;gap:clamp(24px,4vw,56px);align-items:end}
+@media (min-width:900px){.hero{grid-template-columns:1.25fr 1fr}}
+.eyebrow{font:700 12px/1 var(--f-display);letter-spacing:.22em;text-transform:uppercase;color:var(--aqua);margin:0 0 18px}
+h1{margin:0;font:800 clamp(34px,6.4vw,76px)/1.02 var(--f-display);letter-spacing:.1em;text-transform:uppercase;text-wrap:balance}
+h1 .yr{color:var(--aqua)}
+.intro{display:grid;gap:14px;color:#d5d8e8;font-size:17px;max-width:60ch}
+.intro p{margin:0}
+.intro em{color:var(--text);font-style:italic}
+
+/* progress */
+.progress{margin-top:clamp(28px,4vw,44px);display:grid;gap:12px}
+.progress-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;justify-content:space-between}
+.count{font:800 clamp(28px,4vw,40px)/1 var(--f-display);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.count small{font-size:.45em;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-left:8px;font-weight:700}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.chip{appearance:none;border:1px solid var(--line);background:transparent;color:var(--muted);font:600 13px/1 var(--f-body);padding:10px 14px;border-radius:999px;cursor:pointer;min-height:40px;transition:.2s}
+.chip:hover{color:var(--text);border-color:rgba(255,255,255,.3)}
+.chip[aria-pressed="true"]{background:var(--aqua);border-color:var(--aqua);color:var(--ink)}
+.ticks{display:grid;grid-template-columns:repeat(27,1fr);gap:3px}
+.ticks span{height:8px;border-radius:2px;background:rgba(255,255,255,.12)}
+.ticks span.on{background:var(--aqua)}
+
+/* ---------- Wall ---------- */
+.wall{background:var(--wall);position:relative;z-index:2;overflow:hidden;overflow-x:clip;overflow-y:visible;padding-block:clamp(28px,4vw,56px) clamp(36px,5vw,64px)}
+.wall::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:
+   radial-gradient(120% 60% at 10% 0%,rgba(255,255,255,.05),transparent 60%),
+   repeating-radial-gradient(ellipse 180% 40% at 50% 120%,transparent 0 46px,rgba(255,255,255,.035) 46px 58px)}
+.grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));column-gap:var(--gap);row-gap:clamp(30px,4vw,48px);position:relative}
+@media (min-width:640px){:root{--cols:6;--gap:16px}}
+@media (min-width:1100px){:root{--cols:9;--gap:18px}}
+.slot{position:relative;padding-top:10px;display:flex;flex-direction:column}
+/* ledge: each slot draws its piece, extended into the gap so a row reads as one board */
+.slot::before{content:"";position:absolute;top:0;left:calc(var(--gap) / -2 - 1px);right:calc(var(--gap) / -2 - 1px);height:clamp(14px,1.6vw,20px);
+  background:linear-gradient(180deg,var(--wood-1) 0 55%,var(--wood-2) 55% 85%,var(--wood-3) 85%);box-shadow:0 6px 10px -4px rgba(0,0,0,.55);z-index:0}
+.slot:nth-child(3n+1)::before{left:-40px}
+.slot:nth-child(3n)::before{right:-40px}
+@media (min-width:640px){.slot:nth-child(3n+1)::before{left:calc(var(--gap) / -2 - 1px)}.slot:nth-child(3n)::before{right:calc(var(--gap) / -2 - 1px)}.slot:nth-child(6n+1)::before{left:-40px}.slot:nth-child(6n)::before,.slot:last-child::before{right:-40px}}
+@media (min-width:1100px){.slot:nth-child(6n+1)::before{left:calc(var(--gap) / -2 - 1px)}.slot:nth-child(6n)::before{right:calc(var(--gap) / -2 - 1px)}.slot:nth-child(9n+1)::before{left:-40px}.slot:nth-child(9n)::before{right:-40px}}
+
+.card{all:unset;box-sizing:border-box;position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;width:100%;cursor:pointer;background:var(--paper);color:var(--ink);
+  padding:9% 9% 10%;height:100%;max-width:100%;box-shadow:0 10px 18px -8px rgba(0,0,0,.6),0 2px 4px rgba(0,0,0,.3);
+  transform-origin:50% 0;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;-webkit-tap-highlight-color:transparent}
+.card:focus-visible{outline:3px solid var(--aqua);outline-offset:4px}
+.ph{position:relative;aspect-ratio:465/684;background:#ddd}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.num{position:absolute;left:50%;bottom:0;transform:translate(-50%,45%);width:clamp(20px,2.4vw,28px);height:clamp(20px,2.4vw,28px);border-radius:50%;background:var(--paper);
+  display:grid;place-items:center;font:700 clamp(11px,1.2vw,14px)/1 var(--f-serif);color:var(--ink);z-index:2}
+.cap{display:none;text-align:center;font:500 clamp(8px,.78vw,10.5px)/1.25 var(--f-body);padding:clamp(10px,1.2vw,16px) 2px 0;color:#2a2f4e;text-wrap:balance}
+.cap b{font-weight:700}
+@media (min-width:640px){.cap{display:block}}
+.card.open .ph{background:#cfcfcf}
+.card.open .ph img{filter:grayscale(1) contrast(.9) brightness(1.08);opacity:.45}
+.card.open .num{background:var(--paper);color:#8b8fa8}
+.card.open .cap{color:#8b8fa8}
+
+/* hover preview (pointer devices only) */
+.tip{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translate(-50%,6px);width:max-content;max-width:220px;background:var(--navy);color:var(--text);
+  border:1px solid rgba(141,226,224,.35);padding:10px 12px;border-radius:6px;font:500 13px/1.35 var(--f-body);opacity:0;pointer-events:none;transition:.2s;z-index:5;text-align:left;box-shadow:0 10px 24px rgba(0,0,0,.45)}
+.tip strong{display:block;font:700 15px/1.2 var(--f-serif);color:var(--text)}
+.tip span{color:var(--muted)}
+.tip .go{display:block;margin-top:6px;color:var(--aqua);font-weight:600;font-size:12px;letter-spacing:.04em}
+@media (hover:hover) and (pointer:fine){
+  .card:hover,.card:focus-visible{transform:rotate(-1.2deg) translateY(-4px) scale(1.04);box-shadow:0 22px 30px -12px rgba(0,0,0,.7)}
+  .slot:nth-child(even) .card:hover{transform:rotate(1.2deg) translateY(-4px) scale(1.04)}
+  .slot:hover .tip,.card:focus-visible + .tip{opacity:1;transform:translate(-50%,0)}
+}
+.slot.dim .card{opacity:.22;filter:saturate(.3)}
+.slot.dim .tip{display:none}
+.slot.dim::before{opacity:1}
+.hint{margin:clamp(28px,4vw,40px) 0 0;text-align:center;color:var(--muted);font-size:14px;position:relative}
+
+/* ---------- Detail dialog ---------- */
+dialog{padding:0;border:0;background:transparent;color:var(--text);max-width:none;max-height:none;width:100%;height:100%;margin:0;overflow:hidden}
+dialog::backdrop{background:rgba(8,10,24,.78);backdrop-filter:blur(3px)}
+.sheet-wrap{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center}
+.sheet{position:relative;background:var(--navy);width:100%;max-height:92%;overflow:auto;border-radius:18px 18px 0 0;display:grid;grid-template-rows:auto auto;align-content:start;
+  padding-bottom:env(safe-area-inset-bottom,0px);overscroll-behavior:contain;animation:up .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.sheet-photo{position:relative;overflow:hidden;background:#0e1126;height:min(75vw,46vh);width:100%}
+.sheet-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.sheet-photo.lowres img{object-fit:contain;image-rendering:auto}
+.sheet-photo .bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(18px) brightness(.55);transform:scale(1.15)}
+.sheet-photo img{position:relative}
+.sheet-photo.open-slot img{filter:grayscale(1);opacity:.55}
+.sheet-body{padding:24px max(20px,env(safe-area-inset-left,0px)) 24px max(20px,env(safe-area-inset-right,0px));display:grid;gap:14px;align-content:start;min-width:0}
+.kicker{font:600 clamp(18px,2vw,22px)/1.1 var(--f-serif);color:var(--aqua);margin:0}
+.sheet h2{margin:0;font:700 clamp(28px,3.6vw,40px)/1.05 var(--f-serif);text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:8px}
+.meta span{font:600 12px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);padding:8px 10px;border-radius:4px;color:#d5d8e8}
+.meta span.y{border-color:rgba(141,226,224,.5);color:var(--aqua)}
+.story{margin:0;color:#dfe2ee;font-size:17px;line-height:1.65;max-width:60ch}
+.story.soon{color:var(--muted);font-style:italic}
+.navrow{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:6px;padding-top:16px;border-top:1px solid var(--line)}
+.btn{appearance:none;border:1px solid var(--line);background:var(--navy-2);color:var(--text);font:600 14px/1 var(--f-body);min-height:44px;padding:0 16px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{border-color:rgba(255,255,255,.35)}
+.btn:disabled{opacity:.35;cursor:default}
+.pos{color:var(--muted);font:600 13px/1 var(--f-body);font-variant-numeric:tabular-nums}
+.close{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));z-index:3;width:44px;height:44px;border-radius:50%;border:0;background:rgba(10,12,30,.7);color:#fff;font-size:24px;line-height:1;cursor:pointer;display:grid;place-items:center}
+.sheet .close{top:12px;right:12px}
+
+@media (min-width:760px){
+  .sheet-wrap{align-items:center;padding:32px}
+  .sheet{max-width:1040px;max-height:min(88vh,760px);border-radius:14px;grid-template-rows:none;align-content:stretch;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);overflow:hidden;animation-name:pop}
+  @keyframes pop{from{transform:scale(.97);opacity:0}}
+  .sheet-photo{height:auto;min-height:440px}
+  .sheet-body{padding:40px 40px 28px;overflow:auto}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+@media (max-width:759px){
+  .sheet{display:flex;flex-direction:column;overflow:hidden;max-height:calc(100vh - 16px);max-height:calc(100dvh - 16px - env(safe-area-inset-top,0px))}
+  .sheet-photo{flex:0 10 44vh;flex:0 10 44dvh;height:auto;min-height:min(26dvh,200px)}
+  .sheet-body{flex:0 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain;gap:10px;padding-top:18px;padding-bottom:0}
+  .kicker{font-size:17px}
+  .sheet h2{font-size:28px}
+  .meta span{padding:7px 9px;font-size:11px}
+  .story{font-size:16px;line-height:1.55}
+  .navrow{position:sticky;bottom:0;background:var(--navy);margin-top:2px;padding:12px 0 calc(14px + env(safe-area-inset-bottom,0px))}
+  .sheet{padding-bottom:0}
+}
+/* ---------- Footer ---------- */
+footer{padding-block:clamp(36px,6vw,64px)}
+.foot{display:grid;gap:20px;color:var(--muted);font-size:15px}
+@media (min-width:760px){.foot{grid-template-columns:1fr auto;align-items:end}}
+.foot h3{margin:0 0 6px;font:800 14px/1.2 var(--f-display);letter-spacing:.18em;text-transform:uppercase;color:var(--text)}
+.foot p{margin:0;max-width:62ch}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px}
+.legend i{display:inline-block;width:12px;height:16px;vertical-align:-3px;margin-right:6px;background:var(--paper)}
+.legend i.o{background:#5c5f70}
+</style>
+</head>
+<body>
+
+
+<header class="wrap">
+  <div class="hero">
+    <div>
+      <p class="eyebrow" id="c-eyebrow">Reach One More</p>
+      <h1><span id="c-headline">Twenty-Seven Churches by</span> <span class="yr" id="c-accent">2027</span></h1>
+    </div>
+    <div class="intro" id="c-intro">
+      <p>The mission of the Christian and Missionary Alliance, the denomination CCC belongs to, is to go and make disciples of all nations: to bring all of Jesus to all of the world.</p>
+      <p>As part of CCC’s <em>Reach One More</em> initiative, our goal is to catalyze twenty-seven church plants in their initial phases in least-reached places around the world by 2027.</p>
+    </div>
+  </div>
+  <div class="progress" aria-label="Progress">
+    <div class="progress-head">
+      <div class="count"><span id="done">14</span> / 27 <small id="c-progress">church plants catalyzed</small></div>
+      <div class="filters" id="filters" role="group" aria-label="Filter by year">
+        <button class="chip" data-f="all" aria-pressed="true">All</button>
+        <button class="chip" data-f="open" aria-pressed="false">Still to go</button>
+      </div>
+    </div>
+    <div class="ticks" id="ticks" aria-hidden="true"></div>
+  </div>
+</header>
+
+<section class="wall" aria-label="The 27 church plants">
+  <div class="wrap">
+    <ul class="grid" id="grid"></ul>
+    <p class="hint" id="hint">Tap any church to read its story.</p>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="foot">
+    <div>
+      <h3 id="c-foot-h">Christ Community Church</h3>
+      <p id="c-foot-p">Each card marks a church plant CCC has helped launch through funding for land, buildings, roads, staff and discipleship. Open cards are the plants still to come before 2027.</p>
+    </div>
+    <div class="legend"><span><i></i>Catalyzed</span><span><i class="o"></i>Still to go</span></div>
+  </div>
+</footer>
+
+<dialog id="dlg" aria-labelledby="d-title">
+  <div class="sheet-wrap" id="wrapper">
+    <article class="sheet" id="sheet">
+      <button class="close" id="d-close" aria-label="Close">×</button>
+      <div class="sheet-photo" id="d-photo"><div class="bg" id="d-bg"></div><img id="d-img" alt=""></div>
+      <div class="sheet-body">
+        <p class="kicker" id="d-kicker"></p>
+        <h2 id="d-title"></h2>
+        <div class="meta" id="d-meta"></div>
+        <p class="story" id="d-story"></p>
+        <div class="navrow">
+          <button class="btn" id="d-prev" aria-label="Previous church">‹ Prev</button>
+          <span class="pos" id="d-pos"></span>
+          <button class="btn" id="d-next" aria-label="Next church">Next ›</button>
+        </div>
+      </div>
+    </article>
+  </div>
+</dialog>
+
+<script src="/app.js" defer></script>
+
+</body>
+</html>
