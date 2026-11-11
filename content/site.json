@@ -7,8 +7,6 @@
     "As part of CCC’s *Reach One More* initiative, our goal is to catalyze twenty-seven church plants in their initial phases in least-reached places around the world by 2027."
   ],
   "progressLabel": "church plants catalyzed",
-  "footerHeading": "Christ Community Church",
-  "footerText": "Each card marks a church plant CCC has helped launch through funding for land, buildings, roads, staff and discipleship. Open cards are the plants still to come before 2027.",
   "churches": [
     {
       "name": "Kilo 43",
@@ -122,5 +120,7 @@
       "photoFocus": "50%",
       "story": "Bivocational pastor Francis Moseray has planted three churches in The Gambia. The newest one is in Serrekunda, a very urban area of the country. Currently, 85 members attend the church plant. With funds from CCC, they will be able to construct a block church building and train and equip believers to go out into areas with little access to the gospel."
     }
-  ]
+  ],
+  "footerHeading": "Christ Community Church Omaha",
+  "footerText": "Each card marks a church plant CCC has helped launch through funding for land, buildings, roads, staff and discipleship. Open cards are the plants still to come before 2027."
 }
