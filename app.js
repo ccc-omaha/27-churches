@@ -6,7 +6,12 @@
   const PLACEHOLDERS = ["/images/placeholder-1.jpg", "/images/placeholder-2.jpg"];
   const $ = s => document.querySelector(s);
   const esc = t => String(t ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-  const italics = t => esc(t).replace(/\*(.+?)\*/g, "<em>$1</em>");
+  // Staff formatting: **bold**, *italic*, [link text](https://...). Last two words tied so nothing ends on an orphan.
+  const italics = t => esc(t)
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*(.+?)\*/g, "<em>$1</em>")
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/ ([^\s<>]{1,14})((?:<\/[a-z]+>)*)$/i, "&nbsp;$1$2");
 
   let top = {}, churches = [], bottom = {};
   try {
@@ -93,7 +98,7 @@
     } else {
       $("#d-title").textContent = c.name;
       $("#d-meta").innerHTML = `<span>${esc(c.place)}</span><span class="y">${esc(c.year)}</span>`;
-      $("#d-story").textContent = c.story || "Full story coming soon.";
+      if (c.story) $("#d-story").innerHTML = italics(c.story); else $("#d-story").textContent = "Full story coming soon.";
       $("#d-story").className = "story" + (c.story ? "" : " soon");
     }
     $("#d-pos").textContent = `${n} of ${GOAL}`; $("#sheet").scrollTop = 0;

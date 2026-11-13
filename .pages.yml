@@ -36,7 +36,7 @@ content:
         label: Intro paragraphs
         type: text
         list: true
-        description: The paragraphs to the right of the big title. One paragraph per item. Wrap words in *asterisks* to italicize them.
+        description: The paragraphs to the right of the big title. One paragraph per item. Use *italic*, **bold** or [link text](https://...).
       - name: progressLabel
         label: Progress label
         type: string
@@ -90,7 +90,7 @@ content:
       - name: story
         label: Story
         type: text
-        description: The paragraph people read when they open this church's card.
+        description: The paragraph people read when they open this church's card. Use *italic*, **bold** or [link text](https://...).
 
   # ---------------------------------------------------------------
   - name: bottom
